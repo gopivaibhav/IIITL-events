@@ -9,6 +9,9 @@ function Login() {
     const [showlogoutButton, setShowlogoutButton] = useState(false);
     const onLoginSuccess = (res) => {
         console.log('Login Success:', res.profileObj);
+        sessionStorage.setItem("fName", res.profileObj.givenName);
+        sessionStorage.setItem("lName", res.profileObj.familyName);
+        sessionStorage.setItem("imageUrl", res.profileObj.imageUrl);
         setShowloginButton(false);
         setShowlogoutButton(true);
     };
@@ -18,8 +21,7 @@ function Login() {
     };
 
     const onLogout = () => {
-        alert("You have been logged out successfully");
-        console.clear();
+        sessionStorage.clear();
         setShowloginButton(true);
         setShowlogoutButton(false);
     };
