@@ -1,0 +1,15 @@
+.people{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+}
+.people p{
+    font-size: 20px;
+    font-family: sans-serif;
+}
+.people p:hover{
+    color: rgb(114, 116, 116);
+    cursor: pointer;
+}

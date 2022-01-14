@@ -5,7 +5,7 @@ function Profile() {
     const lName = sessionStorage.getItem('lName')
     const imageUrl = sessionStorage.getItem('imageUrl')
     const checkFunc=()=>{
-        const token=localStorage.getItem('auth-token')
+        const token=sessionStorage.getItem('auth-token')
         axios.get('http://localhost:5000/check',{
             headers: {
                 'auth-token': token

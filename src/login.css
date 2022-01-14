@@ -18,12 +18,12 @@
     align-items: center;
     
 }
-.inner-container button:hover{
+button:hover{
     cursor: pointer;
     background-color: rgb(112, 108, 108);
     color: azure;
 }
-.inner-container button{
+button{
     padding: 10px;
     margin: 5px;
     width: 98%;
@@ -40,3 +40,4 @@
     background-color: rgb(75, 70, 70);
     color: azure;
 }
+
