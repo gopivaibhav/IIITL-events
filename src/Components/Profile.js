@@ -1,34 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import '../CSS/profile.css'
 function Profile() {
-    const fName = sessionStorage.getItem('fName')
-    const lName = sessionStorage.getItem('lName')
-    const imageUrl = sessionStorage.getItem('imageUrl')
-    const checkFunc=()=>{
-        const token=sessionStorage.getItem('auth-token')
-        axios.get('http://localhost:5000/check',{
-            headers: {
-                'auth-token': token
-              }
-        }).then((res)=>{
-            console.log(res.data)
-        })
-    }
+    const [fName, setfName] = useState(null)
+    const [lName, setlName] = useState(null)
+    const [imageUrl, setimageUrl] = useState(null)
+    let token = sessionStorage.getItem('auth-token')
+    useEffect(() => {
+        if (token) {
+            if (sessionStorage.getItem('fName')) {
+                setfName(sessionStorage.getItem('fName'))
+                setlName(sessionStorage.getItem('lName'))
+                setimageUrl(sessionStorage.getItem('imageUrl'))
+            } else {
+                axios.get('http://localhost:5000/people/main', {
+                    headers: {
+                        'auth-token': token
+                    }
+                }).then((res) => {
+                    setimageUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmkc22Q7pqxKlGEb_WY2bp474iC3msgcX6uA&usqp=CAU")
+                    setfName(res.data.fName)
+                    setlName(res.data.lName)
+                })
+            }
+        } else {
+            setfName('Login Karo')
+        }
+    }, [token])
     return (
         <div>
-            {fName ?
-                <div>
-                    This is my Profile <br />
-                    Welcome {fName} {lName}
-                    <img src={imageUrl} alt='Profile Picture'></img>
-                    <p onClick={checkFunc}>click to check</p>
-                </div>
-                :
-                <div>
-                    <p onClick={checkFunc}>click to check</p>
-                    Login to view your profile
-                </div>
-            }
+            {fName==="Login Karo" && <>Login to see profile page</>}
+            <br></br>
+            Welcome
+            <div>
+                {fName && <>{fName}</>}
+                {lName && <>{lName}</>}
+            </div>
+            <img src={imageUrl}></img>
         </div>
     )
 }

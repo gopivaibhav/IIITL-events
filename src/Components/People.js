@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../people.css'
+import '../CSS/people.css'
 export default function People() {
     const [items, setItems] = useState([]);
     let navigate = useNavigate();
@@ -22,6 +22,10 @@ export default function People() {
     })
     return (
         <div className='people'>
+            {list}
+            {list}
+            {list}
+            {list}
             {list}
         </div>
     )

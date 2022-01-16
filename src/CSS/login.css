@@ -1,0 +1,71 @@
+body {
+  background: linear-gradient(#141e30, #243b55);
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  margin-left: 370px;
+  margin-top: 100px;
+  padding: 30px;
+  font-family: sans-serif;
+  width: 580px;
+}
+.inner-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0px;
+}
+button:hover {
+  cursor: pointer;
+  background-color: #03e9f4;
+  color: #000;
+}
+button {
+  padding: 9px;
+  border: 1px solid #03e9f4;
+  margin: 5px;
+  width: 98%;
+  color: #03e9f4;
+  background-color: black;
+}
+.inner-container input {
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px;
+  color: #fff;
+  border: 0px;
+  background-color: transparent;
+}
+.inner-container input:focus {
+  color: #03e9f4;
+  background-color: #000;
+}
+.logoutBtn {
+  display: none;
+}
+.signup {
+  margin: 0px;
+  position: relative;
+  left: 6vw;
+  color: #03e9f4;
+  text-decoration: dotted;
+}
+.signup:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.error {
+  color: red;
+}
+
+.inner-container input::placeholder {
+  color: rgb(228, 224, 224);
+}

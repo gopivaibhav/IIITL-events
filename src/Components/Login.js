@@ -1,21 +1,44 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import axios from 'axios'
-import '../login.css'
+import '../CSS/login.css'
 
 const clientId = "774998093778-lj0dcv0os65cvqi7ljql5pn2opsb8ica.apps.googleusercontent.com";
 
 function Login() {
     const logoutBtn = useRef()
-    const [showloginButton, setShowloginButton] = useState(true);
-    const showlogoutButton = true;
+    const [sign, setSign] = useState(false)
+    const [log, setLog] = useState(true)
     const [email, setEmail] = useState(null);
     const [pass, setPass] = useState(null);
+    const [text, setText] = useState('SignUp');
+    const [msg, setMsg] = useState(null);
+    const { register, handleSubmit } = useForm();
+    const navigate=useNavigate()
+    const onSubmit = (data) => {
+        const object={
+            fName:data['First name'],
+            lName:data['Last name'],
+            email:data['Email'],
+            password:data['Password']
+        }
+        if (data['Password'] === data['Confirm Password'] && data['Password'].length >= 7) {
+            axios.post('http://localhost:5000/register', object).then((res) => {
+                if(res.data.error){
+                    setMsg(res.data.error)
+                }
+            })
+        } else if (data['Password'].length < 7) {
+            setMsg("Password length should be greater than 6")
+        } else {
+            setMsg("Passwords didn't match")
+        }
+    }
     useEffect(() => {
-        // sessionStorage.removeItem("fName")
-        // sessionStorage.removeItem("lName")
-        // sessionStorage.removeItem("imageUrl")
-        // logoutBtn.current.click()
+        logoutBtn.current.click()
+        sessionStorage.clear()
     }, [])
     const onLoginSuccess = (res) => {
         console.log('Login Success:', res.profileObj);
@@ -23,63 +46,80 @@ function Login() {
         sessionStorage.setItem("lName", res.profileObj.familyName);
         sessionStorage.setItem("imageUrl", res.profileObj.imageUrl);
         sessionStorage.setItem("auth-token", 'Jai_Balayya');
-        setShowloginButton(true);
+        navigate('/')
     };
     const onLoginFailure = (res) => {
         console.log('Login Failed:', res);
     };
-
+    const signUp = () => {
+        if (log) {
+            setSign(true)
+            setLog(false)
+            setText('SignIn')
+        } else {
+            setSign(false)
+            setLog(true)
+            setText('SignUp')
+        }
+    }
     const onLogout = () => {
         sessionStorage.clear();
-        setShowloginButton(true);
     };
-    const btnClicked = (e) => {
-        e.preventDefault()
+    const btnClicked = (event) => {
+        event.preventDefault()
         axios.post('http://localhost:5000/login', { email: email, password: pass }).then((res) => {
-            console.log(res.data)
             sessionStorage.setItem('auth-token', res.data);
+            navigate('/')
         })
     }
     return (
         <div className='login-container'>
             <div className='inner-container'>
-                <form>
-                    <input type="email" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
-                    <input type="password" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
-                    <button type='submit' onClick={btnClicked}>SignIn</button>
-                </form>
+                {log &&
+                    <form>
+                        <input type="email" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
+                        <input type="password" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
+                        <button type='submit' onClick={btnClicked}>SignIn</button>
+                    </form>
+
+                }
+                {sign &&
+                    <div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input type="text" placeholder="First name" {...register("First name", { required: true, maxLength: 80 })} />
+                            <input type="text" placeholder="Last name" {...register("Last name", { required: true, maxLength: 100 })} />
+                            <input type="email" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
+                            <input type="password" placeholder="Password" {...register("Password", { required: true, min: 7 })} />
+                            <input type="password" placeholder="Confirm Password" {...register("Confirm Password", { required: true, min: 7 })} />
+                            <button type="submit">SignUp</button>
+                        </form>
+                        {msg!==null && <p className='error'>{msg}</p>}
+
+                    </div>
+
+                }
             </div>
+            <p className="signup" onClick={signUp}>{text}</p>
             <p>OR</p>
-            {/* {showloginButton ?
-                <GoogleLogin
-                    clientId={clientId}
-                    buttonText="Sign In"
-                    onSuccess={onLoginSuccess}
-                    onFailure={onLoginFailure}
-                    cookiePolicy={'single_host_origin'}
-                    isSignedIn={true}
-                /> : null} */}
             <GoogleLogin
                 clientId={clientId}
                 render={renderProps => (
-                    <button onClick={renderProps.onClick}>Login</button>
+                    <button onClick={renderProps.onClick}>Continue with Google</button>
                 )}
                 buttonText="Login"
                 onSuccess={onLoginSuccess}
                 onFailure={onLoginFailure}
             />
 
-            {showlogoutButton ?
-                <GoogleLogout
-                    clientId={clientId}
-                    render={renderProps => (
-                        <button onClick={renderProps.onClick} ref={logoutBtn}>Logout</button>
-                    )}
-                    buttonText="Logut"
-                    onLogoutSuccess={onLogout}
-                >
-                </GoogleLogout> : null
-            }
+            <GoogleLogout
+                clientId={clientId}
+                render={renderProps => (
+                    <button onClick={renderProps.onClick} className='logoutBtn' ref={logoutBtn}>Logout</button>
+                )}
+                buttonText="Logut"
+                onLogoutSuccess={onLogout}
+            >
+            </GoogleLogout>
         </div>
     );
 }
