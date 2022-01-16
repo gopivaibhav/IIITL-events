@@ -8,6 +8,7 @@ body{
     background: linear-gradient(#141e30, #243b55);
     color: aliceblue;
     height: 45px;
+    padding: 10px;
 }
 .navbar a{
     text-decoration: none;

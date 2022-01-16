@@ -13,29 +13,14 @@ import Person from './Components/Person';
 import { useState, useEffect } from 'react';
 export default function Main() {
     const [text, setText] = useState('Login')
-    // useEffect(() => {
-    //     if(token){
-    //         setText('Logout')
-    //     }else{
-    //         setText('Login')
-    //     }
-    // }, [token])
+    const token=sessionStorage.getItem('auth-token')
     useEffect(() => {
-        function checkUserData() {
-            const item = sessionStorage.getItem('auth-token')
-            console.log('called')
-            if (item) {
-                setText('Logout')
-            } else {
-                setText('Login')
-            }
+        if(token){
+            setText('Logout')
+        }else{
+            setText('Login')
         }
-            window.addEventListener('storage', checkUserData)
-
-            return () => {
-                window.removeEventListener('storage', checkUserData)
-            }
-        }, [])
+    }, [token])
     return (
         <Router>
             <div className='navbar'>

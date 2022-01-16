@@ -16,17 +16,17 @@ function Login() {
     const [text, setText] = useState('SignUp');
     const [msg, setMsg] = useState(null);
     const { register, handleSubmit } = useForm();
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const onSubmit = (data) => {
-        const object={
-            fName:data['First name'],
-            lName:data['Last name'],
-            email:data['Email'],
-            password:data['Password']
+        const object = {
+            fName: data['First name'],
+            lName: data['Last name'],
+            email: data['Email'],
+            password: data['Password']
         }
         if (data['Password'] === data['Confirm Password'] && data['Password'].length >= 7) {
             axios.post('http://localhost:5000/register', object).then((res) => {
-                if(res.data.error){
+                if (res.data.error) {
                     setMsg(res.data.error)
                 }
             })
@@ -46,6 +46,19 @@ function Login() {
         sessionStorage.setItem("lName", res.profileObj.familyName);
         sessionStorage.setItem("imageUrl", res.profileObj.imageUrl);
         sessionStorage.setItem("auth-token", 'Jai_Balayya');
+        const object = {
+            fName: res.profileObj.givenName,
+            lName: res.profileObj.familyName,
+            imageUrl: res.profileObj.imageUrl,
+            email: res.profileObj.email,
+            googleId: res.profileObj.googleId
+        }
+        axios.post('http://localhost:5000/register', object).then((res) => {
+            if (res.data.error) {
+                setMsg(res.data.error)
+            }
+        })
+        
         navigate('/')
     };
     const onLoginFailure = (res) => {
@@ -68,8 +81,12 @@ function Login() {
     const btnClicked = (event) => {
         event.preventDefault()
         axios.post('http://localhost:5000/login', { email: email, password: pass }).then((res) => {
-            sessionStorage.setItem('auth-token', res.data);
-            navigate('/')
+            if (res.data.error) {
+                setMsg(res.data.error)
+            }else{
+                sessionStorage.setItem('auth-token', res.data);
+                navigate('/')
+            }
         })
     }
     return (
@@ -79,7 +96,14 @@ function Login() {
                     <form>
                         <input type="email" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
                         <input type="password" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
-                        <button type='submit' onClick={btnClicked}>SignIn</button>
+                        <button type='submit' onClick={btnClicked}>
+                            SignIn
+                            <span className="first"></span>
+                            <span className="second"></span>
+                            <span className="third"></span>
+                            <span className="fourth"></span>
+                        </button>
+                        {msg !== null && <p className='error'>{msg}</p>}
                     </form>
 
                 }
@@ -91,9 +115,15 @@ function Login() {
                             <input type="email" placeholder="Email" {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} />
                             <input type="password" placeholder="Password" {...register("Password", { required: true, min: 7 })} />
                             <input type="password" placeholder="Confirm Password" {...register("Confirm Password", { required: true, min: 7 })} />
-                            <button type="submit">SignUp</button>
+                            <button type="submit">
+                                SignUp
+                                <span className="first"></span>
+                                <span className="second"></span>
+                                <span className="third"></span>
+                                <span className="fourth"></span>
+                            </button>
+                        {msg !== null && <p className='error'>{msg}</p>}
                         </form>
-                        {msg!==null && <p className='error'>{msg}</p>}
 
                     </div>
 
@@ -104,7 +134,13 @@ function Login() {
             <GoogleLogin
                 clientId={clientId}
                 render={renderProps => (
-                    <button onClick={renderProps.onClick}>Continue with Google</button>
+                    <button onClick={renderProps.onClick}>
+                        Continue with Google
+                        <span className="first"></span>
+                        <span className="second"></span>
+                        <span className="third"></span>
+                        <span className="fourth"></span>
+                    </button>
                 )}
                 buttonText="Login"
                 onSuccess={onLoginSuccess}
