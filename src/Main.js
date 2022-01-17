@@ -26,7 +26,7 @@ export default function Main() {
             <div className='navbar'>
                 <Link to="/login">{text}</Link>
                 <Link to="/">Home</Link>
-                <Link to="/people">People</Link>
+                <Link to="/people">Search</Link>
                 <Link to="/profile">Profile</Link>
             </div>
             <Routes>

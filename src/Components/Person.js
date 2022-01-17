@@ -7,7 +7,7 @@ export default function Person() {
     const [error,setError]=useState(null)
     const {idForPerson}=useParams()
     useEffect(() => {
-        axios.get(`http://localhost:5000/people/${idForPerson}`,{
+        axios.get(`${process.env.REACT_APP_PORT}/people/${idForPerson}`,{
             headers:{
                 'auth-token':sessionStorage.getItem('auth-token')
             }

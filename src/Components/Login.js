@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios'
 import '../CSS/login.css'
 
-const clientId = "774998093778-lj0dcv0os65cvqi7ljql5pn2opsb8ica.apps.googleusercontent.com";
+const clientId = process.env.REACT_APP_CLIENT_ID;
 
 function Login() {
     const logoutBtn = useRef()
@@ -25,7 +25,7 @@ function Login() {
             password: data['Password']
         }
         if (data['Password'] === data['Confirm Password'] && data['Password'].length >= 7) {
-            axios.post('http://localhost:5000/register', object).then((res) => {
+            axios.post(`${process.env.REACT_APP_PORT}/register`, object).then((res) => {
                 if (res.data.error) {
                     setMsg(res.data.error)
                 }
@@ -45,7 +45,7 @@ function Login() {
         sessionStorage.setItem("fName", res.profileObj.givenName);
         sessionStorage.setItem("lName", res.profileObj.familyName);
         sessionStorage.setItem("imageUrl", res.profileObj.imageUrl);
-        sessionStorage.setItem("auth-token", 'Jai_Balayya');
+        sessionStorage.setItem("auth-token", REACT_APP_AUTH_GOOGLE);
         const object = {
             fName: res.profileObj.givenName,
             lName: res.profileObj.familyName,
@@ -53,7 +53,7 @@ function Login() {
             email: res.profileObj.email,
             googleId: res.profileObj.googleId
         }
-        axios.post('http://localhost:5000/register', object).then((res) => {
+        axios.post(`${process.env.REACT_APP_PORT}/register`, object).then((res) => {
             if (res.data.error) {
                 setMsg(res.data.error)
             }
@@ -80,7 +80,7 @@ function Login() {
     };
     const btnClicked = (event) => {
         event.preventDefault()
-        axios.post('http://localhost:5000/login', { email: email, password: pass }).then((res) => {
+        axios.post(`${process.env.REACT_APP_PORT}/login`, { email: email, password: pass }).then((res) => {
             if (res.data.error) {
                 setMsg(res.data.error)
             }else{
@@ -94,8 +94,8 @@ function Login() {
             <div className='inner-container'>
                 {log &&
                     <form>
-                        <input type="email" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
-                        <input type="password" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
+                        <input type="email" autocomplete="off" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
+                        <input type="password" autocomplete="off" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
                         <button type='submit' onClick={btnClicked}>
                             SignIn
                             <span className="first"></span>

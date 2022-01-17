@@ -13,7 +13,7 @@ function Profile() {
                 setlName(sessionStorage.getItem('lName'))
                 setimageUrl(sessionStorage.getItem('imageUrl'))
             } else {
-                axios.get('http://localhost:5000/people/main', {
+                axios.get(`${process.env.REACT_APP_PORT}/people/main`, {
                     headers: {
                         'auth-token': token
                     }
