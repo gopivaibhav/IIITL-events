@@ -11,11 +11,11 @@ body {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  margin-left: 370px;
-  margin-top: 100px;
+  margin-top: 70px;
   padding: 30px;
   font-family: sans-serif;
-  width: 580px;
+  margin-left: 30vw;
+  margin-right: 30vw;
 }
 .inner-container form {
   display: flex;
@@ -36,6 +36,7 @@ button {
   transition: all 0.3s;
   overflow: hidden;
   border-radius: 100px;
+  margin: 5px;
 }
 button:hover {
   color: #fff;
@@ -109,6 +110,7 @@ button:hover .fourth {
   margin: 5px;
   color: #fff;
   border: 0px;
+  border-bottom: 1px solid white;
   background-color: transparent;
 }
 .inner-container input:focus {
@@ -121,7 +123,7 @@ button:hover .fourth {
 .signup {
   margin: 0px;
   position: relative;
-  left: 6vw;
+  left: 8vw;
   color: #03e9f4;
   text-decoration: dotted;
 }
@@ -135,4 +137,26 @@ button:hover .fourth {
 
 .inner-container input::placeholder {
   color: rgb(228, 224, 224);
+}
+
+@media screen and (min-width:460px)and (max-width:800px) {
+  .login-container{
+    margin-left: 20vw;
+    margin-right: 20vw;
+  }
+  .signup{
+    left: 16vw;
+  }
+}
+@media screen and (max-width:460px) {
+  .login-container{
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+  .signup{
+    left: 16vw;
+  }
+  button{
+    font-size: 0.8rem;
+  }
 }

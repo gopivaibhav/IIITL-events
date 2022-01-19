@@ -37,7 +37,7 @@ export default function People() {
                 setnewItems(check)
                 setMsg(null)
             } else {
-                setMsg('No user Found with this name')
+                setMsg(`No user Found with ${search}`)
             }
         }
     }, [search, items])
@@ -56,8 +56,10 @@ export default function People() {
 
             <div className='people'>
                 <input type="text" onChange={searchFun} id='search' autocomplete="off"></input>
-                <label htmlFor='search' style={{fontSize:'20px'}}> Searching for {search}</label>
-                {msg && <span className='error'>{msg}</span>}
+                {msg
+                ?<span className='error'>{msg}</span>
+                :<label htmlFor='search' style={{fontSize:'20px'}}> Searching for {search}</label>
+                }
                 {list}
             </div>
         </>

@@ -29,11 +29,13 @@ function Profile() {
     }, [token])
     return (
         <div>
-            {fName==="Login Karo" && <>Login to see profile page</>}
-            <br></br>
-            Welcome
+            {fName==="Login Karo" 
+            ? <>Login to see profile page</>
+            :<><br></br>Welcome</>
+            }
+            
             <div>
-                {fName && <>{fName}</>}
+                {fName!=="Login Karo" && <>{fName}</>}
                 {lName && <>{lName}</>}
             </div>
             <img src={imageUrl}></img>

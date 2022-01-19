@@ -94,8 +94,8 @@ function Login() {
             <div className='inner-container'>
                 {log &&
                     <form>
-                        <input type="email" autocomplete="off" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
-                        <input type="password" autocomplete="off" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
+                        <input type="email" autoComplete="off" placeholder='Email Address' onChange={(e) => { setEmail(e.target.value) }} required></input>
+                        <input type="password" autoComplete="off" placeholder='Password' onChange={(e) => { setPass(e.target.value) }} required></input>
                         <button type='submit' onClick={btnClicked}>
                             SignIn
                             <span className="first"></span>
