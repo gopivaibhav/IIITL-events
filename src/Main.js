@@ -12,6 +12,7 @@ import People from './Components/People';
 import Person from './Components/Person';
 import Admin from './Components/AdminFunc';
 import Chat from './Components/Chat';
+import Text from './Components/Text';
 import { useState, useEffect } from 'react';
 export default function Main() {
     const [text, setText] = useState('Login')
@@ -29,6 +30,7 @@ export default function Main() {
                 <Link to="/login">{text}</Link>
                 <Link to="/">Home</Link>
                 <Link to="/people">Search</Link>
+                <Link to="/text">Chat</Link>
                 <Link to="/profile">Profile</Link>
             </div>
             <Routes>
@@ -36,6 +38,7 @@ export default function Main() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/people' element={<People />} />
+                <Route path='/text' element={<Text />} />
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/person/:idForPerson' element={<Person />} />
                 <Route path='/chat/:idForPerson' element={<Chat />} />

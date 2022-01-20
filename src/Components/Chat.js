@@ -6,7 +6,7 @@ import axios from 'axios';
 export default function Chat() {
     const { idForPerson } = useParams()
     const [items, setItems] = useState([])
-    const [text, setText] = useState([])
+    const [text, setText] = useState('')
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_PORT}/admin/view/${idForPerson}`, {
             headers: {
@@ -14,7 +14,7 @@ export default function Chat() {
             }
         }).then((res) => {
             console.log(res.data)
-            if(res.data!=="NTG"){
+            if (res.data !== "NTG") {
                 res.data.forEach(e => {
                     setItems(prevItems => [...prevItems, e]);
                 });
@@ -23,29 +23,49 @@ export default function Chat() {
     }, [idForPerson])
 
     const submitMsg = () => {
-        axios.post(`${process.env.REACT_APP_PORT}/admin/msg`, {
-            sender: "Admin",
-            msg: text,
-            personId:idForPerson
-        }).then((res) => {
-            console.log(res.data)
-        })
+        if(text!==''){
+            axios.post(`${process.env.REACT_APP_PORT}/admin/msg`, {
+                sender: "Admin",
+                msg: text,
+                personId:idForPerson
+            }).then((res) => {
+                console.log(res.data)
+            })
+        }
     }
 
     const list = items.map((i) => {
-        return (
-            <div key={i._id} id={i._id} className={i.sender}>{i.msg} {i.time}</div>
+        if(i.sender==="You"){
+            return (
+                <p key={i._id} id={i._id} className='right'><span className="You">{i.msg}</span></p>
+            )
+        }else if(i.sender==="Admin"){
+            return (
+                <p key={i._id} id={i._id} className='left'><span className="Admin">{i.msg}</span></p>
+            )
+        }
+        return(
+         <>Nothing</>   
         )
     })
     return (
         <>
-            {list}
-            Chat of {idForPerson}
-            <br></br>
-            <br></br>
-            <br></br>
-            <input type="text" onChange={(e) => { setText(e.target.value) }}></input>
-            <button onClick={submitMsg}>Send Message</button>
+            <p className='title'>Chat with Your Admin</p>
+            <div className='text-container'>
+                {list}
+            </div>
+            
+            <div className='msg'>
+            <input type="text" placeholder='Type Your Message' onChange={(e) => { setText(e.target.value) }}></input>
+            <button onClick={submitMsg} className='send'>
+                Send Message
+                <span className="first"></span>
+                <span className="second"></span>
+                <span className="third"></span>
+                <span className="fourth"></span>
+            </button>
+
+            </div>
         </>
     );
 }

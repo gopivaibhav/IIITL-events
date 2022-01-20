@@ -1,8 +1,73 @@
-.container{
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+.container p:hover {
+  color: #03e9f4;
+  cursor: pointer;
+}
+.You {
+  width: 300px;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #4e38a1;
+  background-color: #4e38a1;
+  color: white;
+  border-radius: 10px;
+}
+.Admin {
+    width: 300px;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #4987ce;
+    background-color: #4987ce;
+    color: white;
+    border-radius: 10px;
+}
+.title {
+  font-size: 30px;
+  text-align: center;
+  padding: 20px;
+}
+.msg input {
+  width: 70vw;
+  font-size: 15px;
+  padding: 10px;
+  margin: 5px;
+  border: 0px;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+}
+input:focus {
+  color: #03e9f4;
+}
+.send {
+  margin: 0px;
+  width: 15vw;
+  margin-right: 7vw;
+}
+
+.msg{
+    position: fixed;
     display: flex;
     justify-content: space-around;
+    bottom: 0px;
+    background-color: black;
+    width: 98%;
+    padding: 15px;
+    border-radius:50px;
 }
-.container p:hover{
-    color:#03e9f4;
-    cursor: pointer;
+.text-container{
+    padding: 20px;
+    padding-bottom: 75px;
+}
+.text-container p{
+    display: flex;
+    width: 98%;
+}
+.left{
+    justify-content: flex-start;
+}
+.right{
+    justify-content: flex-end;
 }
