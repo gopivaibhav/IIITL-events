@@ -10,7 +10,8 @@ import Login from './Components/Login';
 import Profile from './Components/Profile';
 import People from './Components/People';
 import Person from './Components/Person';
-import Admin from './Components/Admin';
+import Admin from './Components/AdminFunc';
+import Chat from './Components/Chat';
 import { useState, useEffect } from 'react';
 export default function Main() {
     const [text, setText] = useState('Login')
@@ -37,6 +38,7 @@ export default function Main() {
                 <Route path='/people' element={<People />} />
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/person/:idForPerson' element={<Person />} />
+                <Route path='/chat/:idForPerson' element={<Chat />} />
             </Routes>
         </Router>
     )

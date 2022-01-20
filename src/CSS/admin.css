@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+.container p:hover{
+    color:#03e9f4;
+    cursor: pointer;
+}
