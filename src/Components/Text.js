@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-
+import Access from './Access';
 
 export default function Text() {
     const [items, setItems] = useState([])
@@ -33,7 +33,7 @@ export default function Text() {
                     'auth-token':sessionStorage.getItem('auth-token')
                 }
             }).then((res) => {
-                console.log(res.data)
+                window.location.href='/text'
             })
         }else{
             setError("Message can't be empty")
@@ -69,7 +69,7 @@ export default function Text() {
                 <div className='msg'>
                 <input type="text" placeholder='Type Your Message' onChange={(e) => { setText(e.target.value) }}></input>
                 <button onClick={submitMsg} className='send'>
-                    Send Message
+                    Send
                     <span className="first"></span>
                     <span className="second"></span>
                     <span className="third"></span>
@@ -81,10 +81,7 @@ export default function Text() {
         );
     }else{
         return(
-            <>
-            <p className='title'>Chat with Your Admin</p>
-            Login to Chat with Admin
-            </>
+            <Access />
         )
     }
 }

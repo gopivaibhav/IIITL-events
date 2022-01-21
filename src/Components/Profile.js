@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import '../CSS/profile.css'
+import Access from './Access'
 function Profile() {
     const [fName, setfName] = useState(null)
     const [lName, setlName] = useState(null)
@@ -30,7 +31,7 @@ function Profile() {
     return (
         <div>
             {fName==="Login Karo" 
-            ? <>Login to see profile page</>
+            ? <Access />
             :<><br></br>Welcome</>
             }
             

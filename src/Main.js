@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './CSS/style.css'
 import {
     BrowserRouter as Router,
@@ -14,25 +14,59 @@ import Admin from './Components/AdminFunc';
 import Chat from './Components/Chat';
 import Text from './Components/Text';
 import { useState, useEffect } from 'react';
+import Access from './Components/Access';
 export default function Main() {
     const [text, setText] = useState('Login')
-    const token=sessionStorage.getItem('auth-token')
+    const [active, setActive] = useState(false)
+    const token = sessionStorage.getItem('auth-token')
+    const hamburger = useRef();
+    const navMenu = useRef();
     useEffect(() => {
-        if(token){
+        if (token) {
             setText('Logout')
-        }else{
+        } else {
             setText('Login')
         }
     }, [token])
+    const handleClick = () => {
+        if(active){
+            setActive(false)
+        }else{
+            setActive(true)
+        }
+    }
+    const linkClick=()=>{
+        setActive(false)
+    }
     return (
         <Router>
-            <div className='navbar'>
-                <Link to="/login">{text}</Link>
-                <Link to="/">Home</Link>
-                <Link to="/people">Search</Link>
-                <Link to="/text">Chat</Link>
-                <Link to="/profile">Profile</Link>
-            </div>
+            <header className="header">
+                <nav className="navbar" >
+                    <a href="/" className="nav-logo">IIITL Events.</a>
+                    <ul className={active ? "active nav-menu" :"nav-menu"} ref={navMenu}>
+                        <li className="nav-item">
+                            <Link className='nav-link' onClick={linkClick} to="/login">{text}</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className='nav-link' onClick={linkClick} to="/">Home</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className='nav-link' onClick={linkClick} to="/people">Search</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className='nav-link' onClick={linkClick} to="/text">Chat</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className='nav-link' onClick={linkClick} to="/profile">Profile</Link>
+                        </li>
+                    </ul>
+                    <div className={active ? "active hamburger" :"hamburger"} ref={hamburger} onClick={handleClick}>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                    </div>
+                </nav>
+            </header>
             <Routes>
                 <Route path='/' element={<Checking />} />
                 <Route path='/profile' element={<Profile />} />
@@ -40,6 +74,7 @@ export default function Main() {
                 <Route path='/people' element={<People />} />
                 <Route path='/text' element={<Text />} />
                 <Route path='/admin' element={<Admin />} />
+                <Route path='/access' element={<Access />} />
                 <Route path='/person/:idForPerson' element={<Person />} />
                 <Route path='/chat/:idForPerson' element={<Chat />} />
             </Routes>
@@ -50,7 +85,7 @@ export default function Main() {
 function Checking() {
     return (
         <div>
-            Home Page
+            Home Page is under Construction 
         </div>
     )
 }

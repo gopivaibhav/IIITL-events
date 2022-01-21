@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
 import '../CSS/login.css'
@@ -16,7 +15,6 @@ function Login() {
     const [text, setText] = useState('SignUp');
     const [msg, setMsg] = useState(null);
     const { register, handleSubmit } = useForm();
-    const navigate = useNavigate()
     const onSubmit = (data) => {
         const object = {
             fName: data['First name'],
@@ -59,7 +57,7 @@ function Login() {
             }
         })
         
-        navigate('/')
+        window.location.href=`/`
     };
     const onLoginFailure = (res) => {
         console.log('Login Failed:', res);
@@ -85,7 +83,7 @@ function Login() {
                 setMsg(res.data.error)
             }else{
                 sessionStorage.setItem('auth-token', res.data);
-                navigate('/')
+                window.location.href=`/`
             }
         })
     }

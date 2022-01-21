@@ -11,7 +11,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
-  margin-top: 70px;
+  margin-top: 60px;
   padding: 30px;
   font-family: sans-serif;
   margin-left: 30vw;
@@ -115,7 +115,9 @@ button:hover .fourth {
 }
 .inner-container input:focus {
   color: #03e9f4;
-  background-color: #000;
+  background-color: transparent;
+  outline: 0;
+
 }
 .logoutBtn {
   display: none;

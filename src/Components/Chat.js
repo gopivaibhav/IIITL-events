@@ -30,6 +30,7 @@ export default function Chat() {
                 personId:idForPerson
             }).then((res) => {
                 console.log(res.data)
+                window.location.href=`/chat/${idForPerson}`
             })
         }
     }
@@ -58,7 +59,7 @@ export default function Chat() {
             <div className='msg'>
             <input type="text" placeholder='Type Your Message' onChange={(e) => { setText(e.target.value) }}></input>
             <button onClick={submitMsg} className='send'>
-                Send Message
+                Send
                 <span className="first"></span>
                 <span className="second"></span>
                 <span className="third"></span>

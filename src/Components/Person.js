@@ -1,7 +1,7 @@
 import axios  from 'axios'
 import React, { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
+import Access from './Access'
 export default function Person() {
     const [person,setPerson]=useState()
     const [error,setError]=useState(null)
@@ -24,9 +24,7 @@ export default function Person() {
         <div>
             {
                 error &&
-                <>
-                    {error}
-                </>
+                <Access />
             }
             {person &&
                 <>

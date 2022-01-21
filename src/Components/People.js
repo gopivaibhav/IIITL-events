@@ -55,7 +55,7 @@ export default function People() {
         <>
 
             <div className='people'>
-                <input type="text" onChange={searchFun} id='search' autocomplete="off"></input>
+                <input type="text" onChange={searchFun} id='search' autoComplete="off"></input>
                 {msg
                 ?<span className='error'>{msg}</span>
                 :<label htmlFor='search' style={{fontSize:'20px'}}> Searching for {search}</label>
