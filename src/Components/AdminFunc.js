@@ -21,11 +21,6 @@ export default function AdminFunc() {
         )
     })
     return (<div className='container'>
-    <div className='left'>
         {list}
-    </div>
-    <div className='right'>
-        Chat Application
-    </div>
     </div>);
 }

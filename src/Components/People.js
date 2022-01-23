@@ -4,11 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import '../CSS/people.css'
 export default function People() {
     const [items, setItems] = useState([]);
+    // const [frnds, setFrnds] = useState([]);
     const [newItems, setnewItems] = useState([]);
     const [search, setSearch] = useState('all');
     const [msg, setMsg] = useState(null);
     let navigate = useNavigate();
     useEffect(() => {
+        axios.get(`${process.env.REACT_APP_PORT}/user/getfrnds`,{
+            headers:{
+                'auth-token':sessionStorage.getItem('auth-token')
+            }
+        }).then((res) => {
+            console.log(res.data)
+        })
         axios.get(`${process.env.REACT_APP_PORT}/people`).then((res) => {
             res.data.people.forEach(e => {
                 setItems(prevItems => [...prevItems, e]);
@@ -16,7 +24,6 @@ export default function People() {
         })
         setnewItems(items)
     }, [])
-    console.log(newItems)
     const handleClick = (e) => {
         navigate(`/person/${e.target.id}`)
     }
@@ -32,7 +39,6 @@ export default function People() {
             const check = items.filter((i) => {
                 return re.test(`${i.fName} ${i.lName}`)
             })
-            console.log(check)
             if (check.length !== 0) {
                 setnewItems(check)
                 setMsg(null)

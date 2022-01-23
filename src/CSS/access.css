@@ -54,7 +54,7 @@
 .texts {
   text-align: center;
   position: relative;
-  top: 20vh;
+  top: 15vh;
 }
 
 .texts__content {
@@ -68,7 +68,7 @@
   letter-spacing: 5px;
    font-size: 2.5rem;
   padding-bottom: 40px;
-  max-width: 960px;
+  max-width: 360px;
   margin: 0 auto;
   color: #00BCD4;
   text-shadow: 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
@@ -83,3 +83,9 @@
   margin: auto;
 }
 
+
+@media screen and (max-width:500px) {
+  .message__text{
+    padding: 0 30px;
+  }
+}

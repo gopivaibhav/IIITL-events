@@ -1,6 +1,8 @@
 .container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .container p:hover {
   color: #03e9f4;
@@ -14,14 +16,18 @@
   background-color: #4e38a1;
   color: white;
   border-radius: 10px;
+  padding-bottom: 23px;
+  position: relative;
 }
 .Admin {
     width: 300px;
     padding: 10px;
+    padding-bottom: 23px;
     font-size: 18px;
     border: 1px solid #4987ce;
     background-color: #4987ce;
     color: white;
+    position: relative;
     border-radius: 10px;
 }
 .title {
@@ -69,9 +75,18 @@ input:focus {
 }
 .left{
     justify-content: flex-start;
-}
+  }
 .right{
     justify-content: flex-end;
+}
+
+.time{
+  position: absolute;
+  font-weight: 600;
+  bottom: 0px;
+  font-size: 15px;
+  color: black;
+  right: 10px;
 }
 @media screen and (max-width:500px) {
   .send{

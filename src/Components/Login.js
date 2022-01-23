@@ -43,7 +43,7 @@ function Login() {
         sessionStorage.setItem("fName", res.profileObj.givenName);
         sessionStorage.setItem("lName", res.profileObj.familyName);
         sessionStorage.setItem("imageUrl", res.profileObj.imageUrl);
-        sessionStorage.setItem("auth-token", process.env.REACT_APP_AUTH_GOOGLE);
+        sessionStorage.setItem("auth-token", `${process.env.REACT_APP_AUTH_GOOGLE}$$$${res.profileObj.email}`);
         const object = {
             fName: res.profileObj.givenName,
             lName: res.profileObj.familyName,

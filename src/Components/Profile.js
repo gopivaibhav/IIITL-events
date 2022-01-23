@@ -5,43 +5,60 @@ import Access from './Access'
 function Profile() {
     const [fName, setfName] = useState(null)
     const [lName, setlName] = useState(null)
+    const [skills, setSkills] = useState([])
     const [imageUrl, setimageUrl] = useState(null)
     let token = sessionStorage.getItem('auth-token')
     useEffect(() => {
         if (token) {
-            if (sessionStorage.getItem('fName')) {
-                setfName(sessionStorage.getItem('fName'))
-                setlName(sessionStorage.getItem('lName'))
-                setimageUrl(sessionStorage.getItem('imageUrl'))
-            } else {
                 axios.get(`${process.env.REACT_APP_PORT}/people/main`, {
                     headers: {
                         'auth-token': token
                     }
                 }).then((res) => {
-                    setimageUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmkc22Q7pqxKlGEb_WY2bp474iC3msgcX6uA&usqp=CAU")
+                    if(res.data.imageUrl){
+                        setimageUrl(res.data.imageUrl)
+                        sessionStorage.setItem('imageUrl',res.data.imageUrl)
+                    }else{
+                        setimageUrl("https://cdn-icons-png.flaticon.com/128/3237/3237472.png")
+                        sessionStorage.setItem('imageUrl',res.data.imageUrl)
+                    }
                     setfName(res.data.fName)
+                    sessionStorage.setItem('fName',res.data.fName)
+                    sessionStorage.setItem('lName',res.data.lName)
                     setlName(res.data.lName)
+                    res.data.skills.forEach(e => {
+                        setSkills(prevItems => [...prevItems, e]);
+                    });
                 })
-            }
         } else {
             setfName('Login Karo')
         }
     }, [token])
-    return (
-        <div>
-            {fName==="Login Karo" 
-            ? <Access />
-            :<><br></br>Welcome</>
-            }
-            
-            <div>
-                {fName!=="Login Karo" && <>{fName}</>}
-                {lName && <>{lName}</>}
-            </div>
-            <img src={imageUrl}></img>
-        </div>
-    )
+    let skillList = skills.map((i) => {
+        return (
+            <p key={i}>{i}</p>
+        )
+    })
+    if (fName === "Login Karo") {
+        return (<Access />)
+    } else {
+        return (
+            <>
+                <div className='overall-container'>
+                    <div>
+                        <img src={imageUrl} alt=''></img>
+                    </div>
+                    <div>
+                        <p className='name'>{fName} {lName}</p>
+                        <a href='./profile/edit'>Edit Profile </a>
+                    </div>
+                </div>
+                <div>Your Skills:</div>
+                {skillList}
+
+            </>
+        )
+    }
 }
 
 export default Profile;

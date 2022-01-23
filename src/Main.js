@@ -10,11 +10,11 @@ import Login from './Components/Login';
 import Profile from './Components/Profile';
 import People from './Components/People';
 import Person from './Components/Person';
-import Admin from './Components/AdminFunc';
+import Admin from './Components/Admin';
 import Chat from './Components/Chat';
 import Text from './Components/Text';
 import { useState, useEffect } from 'react';
-import Access from './Components/Access';
+import EditProfile from './Components/EditProfile';
 export default function Main() {
     const [text, setText] = useState('Login')
     const [active, setActive] = useState(false)
@@ -38,15 +38,18 @@ export default function Main() {
     const linkClick=()=>{
         setActive(false)
     }
+    const loginClick=()=>{
+        setActive(false)
+        if(sessionStorage.getItem('auth-token')){
+            window.location.href='/login'
+        }
+    }
     return (
         <Router>
             <header className="header">
                 <nav className="navbar" >
                     <a href="/" className="nav-logo">IIITL Events.</a>
                     <ul className={active ? "active nav-menu" :"nav-menu"} ref={navMenu}>
-                        <li className="nav-item">
-                            <Link className='nav-link' onClick={linkClick} to="/login">{text}</Link>
-                        </li>
                         <li className="nav-item">
                             <Link className='nav-link' onClick={linkClick} to="/">Home</Link>
                         </li>
@@ -59,6 +62,9 @@ export default function Main() {
                         <li className="nav-item">
                             <Link className='nav-link' onClick={linkClick} to="/profile">Profile</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className='nav-link' onClick={loginClick} to="/login">{text}</Link>
+                        </li>
                     </ul>
                     <div className={active ? "active hamburger" :"hamburger"} ref={hamburger} onClick={handleClick}>
                         <span className="bar"></span>
@@ -70,11 +76,11 @@ export default function Main() {
             <Routes>
                 <Route path='/' element={<Checking />} />
                 <Route path='/profile' element={<Profile />} />
+                <Route path='/profile/edit' element={<EditProfile />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/people' element={<People />} />
                 <Route path='/text' element={<Text />} />
                 <Route path='/admin' element={<Admin />} />
-                <Route path='/access' element={<Access />} />
                 <Route path='/person/:idForPerson' element={<Person />} />
                 <Route path='/chat/:idForPerson' element={<Chat />} />
             </Routes>
@@ -85,7 +91,7 @@ export default function Main() {
 function Checking() {
     return (
         <div>
-            Home Page is under Construction 
+            Home Page and Profile Page are under Construction  
         </div>
     )
 }

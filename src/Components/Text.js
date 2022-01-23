@@ -43,11 +43,15 @@ export default function Text() {
     const list = items.map((i) => {
         if(i.sender==="You"){
             return (
-                <p key={i._id} id={i._id} className='right'><span className="You">{i.msg}</span></p>
+                <p key={i._id} id={i._id} className='right'>
+                    <span className="You">{i.msg}<span className='time'>{i.time}</span></span>
+                </p>
             )
         }else if(i.sender==="Admin"){
             return (
-                <p key={i._id} id={i._id} className='left'><span className="Admin">{i.msg}</span></p>
+                <p key={i._id} id={i._id} className='left'>
+                    <span className="Admin">{i.msg}<span className='time'>{i.time}</span></span>
+                </p>
             )
         }
         return(
