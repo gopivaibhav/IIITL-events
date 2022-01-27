@@ -5,6 +5,7 @@ import Access from './Access'
 function Profile() {
     const [fName, setfName] = useState(null)
     const [lName, setlName] = useState(null)
+    const [formOpt, setformOpt] = useState(null)
     const [skills, setSkills] = useState([])
     const [imageUrl, setimageUrl] = useState(null)
     let token = sessionStorage.getItem('auth-token')
@@ -15,6 +16,7 @@ function Profile() {
                         'auth-token': token
                     }
                 }).then((res) => {
+                    console.log(res.data)
                     if(res.data.imageUrl){
                         setimageUrl(res.data.imageUrl)
                         sessionStorage.setItem('imageUrl',res.data.imageUrl)
@@ -23,9 +25,12 @@ function Profile() {
                         sessionStorage.setItem('imageUrl',res.data.imageUrl)
                     }
                     setfName(res.data.fName)
+                    setlName(res.data.lName)
+                    if(res.data.formFilled){
+                        setformOpt(res.data.formFilled)
+                    }
                     sessionStorage.setItem('fName',res.data.fName)
                     sessionStorage.setItem('lName',res.data.lName)
-                    setlName(res.data.lName)
                     res.data.skills.forEach(e => {
                         setSkills(prevItems => [...prevItems, e]);
                     });
@@ -55,7 +60,9 @@ function Profile() {
                 </div>
                 <div>Your Skills:</div>
                 {skillList}
-
+                <div>
+                    {formOpt && <>{formOpt}</>}
+                </div>
             </>
         )
     }

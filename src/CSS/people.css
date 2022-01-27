@@ -17,7 +17,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #000;
+  background: rgb(105, 104, 104);
 }
 .people p {
   font-size: 25px;

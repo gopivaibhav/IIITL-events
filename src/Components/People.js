@@ -10,9 +10,9 @@ export default function People() {
     const [msg, setMsg] = useState(null);
     let navigate = useNavigate();
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_PORT}/user/getfrnds`,{
-            headers:{
-                'auth-token':sessionStorage.getItem('auth-token')
+        axios.get(`${process.env.REACT_APP_PORT}/user/getfrnds`, {
+            headers: {
+                'auth-token': sessionStorage.getItem('auth-token')
             }
         }).then((res) => {
             console.log(res.data)
@@ -52,9 +52,15 @@ export default function People() {
     //         return i.fName===search
     //     }))
     // }
+    // const addFrnd = (e) => {
+    //     console.log(e.target.key)
+    // }
     const list = newItems.map((i) => {
         return (
-            <p key={i._id} id={i._id} onClick={handleClick}>{i.fName} {i.lName}</p>
+                <p key={i._id} id={i._id} onClick={handleClick}>
+                    {i.fName} {i.lName}
+                    {/* <span onClick={addFrnd} key={i._id}>Add Friend</span> */}
+                </p>
         )
     })
     return (
@@ -63,8 +69,8 @@ export default function People() {
             <div className='people'>
                 <input type="text" onChange={searchFun} id='search' autoComplete="off"></input>
                 {msg
-                ?<span className='error'>{msg}</span>
-                :<label htmlFor='search' style={{fontSize:'20px'}}> Searching for {search}</label>
+                    ? <span className='error'>{msg}</span>
+                    : <label htmlFor='search' style={{ fontSize: '20px' }}> Searching for {search}</label>
                 }
                 {list}
             </div>

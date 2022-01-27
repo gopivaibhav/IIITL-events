@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Login from './Components/Login';
 import Profile from './Components/Profile';
+import Home from './Components/Home';
 import People from './Components/People';
 import Person from './Components/Person';
 import Admin from './Components/Admin';
@@ -74,7 +75,7 @@ export default function Main() {
                 </nav>
             </header>
             <Routes>
-                <Route path='/' element={<Checking />} />
+                <Route path='/' element={<Home />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/profile/edit' element={<EditProfile />} />
                 <Route path='/login' element={<Login />} />
@@ -85,13 +86,5 @@ export default function Main() {
                 <Route path='/chat/:idForPerson' element={<Chat />} />
             </Routes>
         </Router>
-    )
-}
-
-function Checking() {
-    return (
-        <div>
-            Home Page and Profile Page are under Construction  
-        </div>
     )
 }

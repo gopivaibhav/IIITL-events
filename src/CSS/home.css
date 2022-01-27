@@ -1,0 +1,42 @@
+.options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 0px;
+    width: 80%;
+}
+
+.Q-A{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    margin-top: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+.Q-A p{
+    font-size: 1.2rem;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.options p{
+    margin: 20px;
+    margin-bottom: 0px;
+    width: 150px;
+}
+.text{
+    background-color: transparent;
+    border: 0px;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    margin-top: 0px;
+    border-bottom: 2px solid white;
+}
