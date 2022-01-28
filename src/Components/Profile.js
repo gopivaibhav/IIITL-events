@@ -5,7 +5,7 @@ import Access from './Access'
 function Profile() {
     const [fName, setfName] = useState(null)
     const [lName, setlName] = useState(null)
-    const [formOpt, setformOpt] = useState(null)
+    const [formAns, setformAns] = useState('')
     const [skills, setSkills] = useState([])
     const [imageUrl, setimageUrl] = useState(null)
     let token = sessionStorage.getItem('auth-token')
@@ -26,8 +26,9 @@ function Profile() {
                     }
                     setfName(res.data.fName)
                     setlName(res.data.lName)
-                    if(res.data.formFilled){
-                        setformOpt(res.data.formFilled)
+                    if(res.data.filledForm){
+                        console.log(res.data.filledForm)
+                        setformAns(res.data.filledForm)
                     }
                     sessionStorage.setItem('fName',res.data.fName)
                     sessionStorage.setItem('lName',res.data.lName)
@@ -59,9 +60,9 @@ function Profile() {
                     </div>
                 </div>
                 <div>Your Skills:</div>
-                {skillList}
+                {skillList.length!==0 ? <>{skillList}</> : <>Edit your profile to add Skills</>}
                 <div>
-                    {formOpt && <>{formOpt}</>}
+                    {formAns!=='' && <><br></br>You Have opted {formAns} as the Answer for Question asked</>}
                 </div>
             </>
         )

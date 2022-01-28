@@ -21,7 +21,7 @@ export default function Home() {
         }else{
             if(sessionStorage.getItem('auth-token')){
                 axios.post(`${process.env.REACT_APP_PORT}/user/form`, {
-                    vale: value
+                    value: value
                 },{
                     headers:{
                         'auth-token':sessionStorage.getItem('auth-token')
