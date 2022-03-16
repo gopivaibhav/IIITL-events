@@ -62,7 +62,7 @@ export default function Home() {
             }
         </div>
 
-        <div>
+        <div className='home-container'>
             Home Page and Profile Page are under Construction.
             <br></br>
             Will be back with new features like adding a friend, searching friends based on tech skills, etc.

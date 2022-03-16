@@ -40,7 +40,7 @@ export default function EditProfile() {
   }
   let skillList = skills.map((i) => {
     return (
-      <p key={i}>{i}</p>
+      <p key={i}>{i} <span>X</span></p>
     )
   })
   return (

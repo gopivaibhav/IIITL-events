@@ -85,7 +85,7 @@ input:focus {
   font-weight: 600;
   bottom: 0px;
   font-size: 15px;
-  color: black;
+  color: #bda359;
   right: 10px;
 }
 @media screen and (max-width:500px) {
