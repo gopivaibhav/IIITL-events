@@ -6,10 +6,7 @@ export default function Admin() {
     const token = sessionStorage.getItem('admin')
     const btnClicked = (e) => {
         e.preventDefault()
-        console.log(email, "admin@bgv.com")
-        console.log(pass, process.env.REACT_APP_AUTH_GOOGLE)
         if (email === "admin@bgv.com" && pass === process.env.REACT_APP_AUTH_GOOGLE) {
-            console.log('Welcome admin')
             sessionStorage.setItem('admin', process.env.REACT_APP_AUTH_GOOGLE)
         }
     }
