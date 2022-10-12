@@ -11,12 +11,15 @@ import Chat from "./Components/Chat";
 import Text from "./Components/Text";
 import { useState, useEffect } from "react";
 import EditProfile from "./Components/EditProfile";
+
+
 export default function Main() {
   const [text, setText] = useState("Login");
   const [active, setActive] = useState(false);
   const token = sessionStorage.getItem("auth-token");
   const hamburger = useRef();
   const navMenu = useRef();
+
   useEffect(() => {
     if (token) {
       setText("Logout");
@@ -24,6 +27,7 @@ export default function Main() {
       setText("Login");
     }
   }, [token]);
+
   const handleClick = () => {
     if (active) {
       setActive(false);
@@ -31,15 +35,18 @@ export default function Main() {
       setActive(true);
     }
   };
+
   const linkClick = () => {
     setActive(false);
   };
+
   const loginClick = () => {
     setActive(false);
     if (sessionStorage.getItem("auth-token")) {
       window.location.href = "/login";
     }
   };
+  
   return (
     <Router>
       <header className="header">
