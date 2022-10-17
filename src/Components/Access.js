@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../CSS/access.css";
 export default function Access() {
   return (
@@ -20,7 +21,9 @@ export default function Access() {
               Login to view the content of the page
             </p>
             <button>
-              <a href="/login">Login</a>
+              <Link to="/login">
+                Login
+              </Link>
               <span className="first"></span>
               <span className="second"></span>
               <span className="third"></span>

@@ -43,7 +43,7 @@ export default function Main() {
   const loginClick = () => {
     setActive(false);
     if (sessionStorage.getItem("auth-token")) {
-      window.location.href = "/login";
+      window.location.href = "/";
     }
   };
   
@@ -51,9 +51,9 @@ export default function Main() {
     <Router>
       <header className="header">
         <nav className="navbar">
-          <a href="/" className="nav-logo">
+          <Link className="nav-logo" to="/">
             IIITL Events.
-          </a>
+          </Link>
           <ul className={active ? "active nav-menu" : "nav-menu"} ref={navMenu}>
             <li className="nav-item">
               <Link className="nav-link" onClick={linkClick} to="/">

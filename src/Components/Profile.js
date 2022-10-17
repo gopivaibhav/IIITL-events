@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import axios from "axios";
 import "../CSS/profile.css";
 import Access from "./Access";
@@ -59,7 +60,7 @@ function Profile() {
             <p className="name">
               {fName} {lName}
             </p>
-            <a href="./profile/edit">Edit Profile </a>
+            <Link to="./edit">Edit Profile </Link>
           </div>
         </div>
         <div>Your Skills:</div>
