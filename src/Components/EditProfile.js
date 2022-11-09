@@ -33,7 +33,7 @@ export default function EditProfile() {
         .then((res) => {
           console.log(res);
           if (res.data === "updated succesfully") {
-            window.location.href = "/profile";
+            window.location.href = "/";
           }
         });
     }

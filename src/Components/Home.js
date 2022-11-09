@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Feed from "./Feed";
 import "../CSS/home.css";
 
 export default function Home() {
@@ -107,6 +108,7 @@ export default function Home() {
         <br></br>
         Dw, You will get credits for good ideas :)
       </div>
+      <Feed />
     </>
   );
 }

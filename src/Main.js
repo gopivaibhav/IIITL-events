@@ -11,6 +11,7 @@ import Chat from "./Components/Chat";
 import Text from "./Components/Text";
 import { useState, useEffect } from "react";
 import EditProfile from "./Components/EditProfile";
+import AddFeed from "./Components/AddFeed";
 
 
 export default function Main() {
@@ -100,6 +101,7 @@ export default function Main() {
         <Route path="/people" element={<People />} />
         <Route path="/text" element={<Text />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/add-event" element={<AddFeed />} />
         <Route path="/person/:idForPerson" element={<Person />} />
         <Route path="/chat/:idForPerson" element={<Chat />} />
       </Routes>

@@ -162,3 +162,11 @@ button:hover .fourth {
     font-size: 0.8rem;
   }
 }
+
+
+.feed-inputs, .feed-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

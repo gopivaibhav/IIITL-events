@@ -44,3 +44,16 @@
     margin: 40px;
     
 }
+
+.cards-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.events-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 40px;
+}
