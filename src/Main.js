@@ -8,6 +8,7 @@ import People from "./Components/People";
 import Person from "./Components/Person";
 import Admin from "./Components/Admin";
 import Chat from "./Components/Chat";
+import ChitChat from "./Components/Chitchat";
 import Text from "./Components/Text";
 import { useState, useEffect } from "react";
 import EditProfile from "./Components/EditProfile";
@@ -104,6 +105,7 @@ export default function Main() {
         <Route path="/add-event" element={<AddFeed />} />
         <Route path="/person/:idForPerson" element={<Person />} />
         <Route path="/chat/:idForPerson" element={<Chat />} />
+        <Route path="/ChitChat/:idForPerson" element={<ChitChat />} />
       </Routes>
     </Router>
   );

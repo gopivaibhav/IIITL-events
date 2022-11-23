@@ -24,16 +24,16 @@ export default function Person() {
         } else {
           if (res.data.imageUrl) {
             setimageUrl(res.data.imageUrl);
-            sessionStorage.setItem("imageUrl", res.data.imageUrl);
+            // sessionStorage.setItem("imageUrl", res.data.imageUrl);
           } else {
             setimageUrl(
               "https://cdn-icons-png.flaticon.com/128/3237/3237472.png"
             );
-            sessionStorage.setItem("imageUrl", res.data.imageUrl);
+            // sessionStorage.setItem("imageUrl", res.data.imageUrl);
           }
           setfName(res.data.fName);
-          sessionStorage.setItem("fName", res.data.fName);
-          sessionStorage.setItem("lName", res.data.lName);
+          // sessionStorage.setItem("fName", res.data.fName);
+          // sessionStorage.setItem("lName", res.data.lName);
           setlName(res.data.lName);
           res.data.skills.forEach((e) => {
             setSkills((prevItems) => [...prevItems, e]);
@@ -56,7 +56,7 @@ export default function Person() {
     return <p key={i}>{i}</p>;
   });
   if (error) {
-    return <Access></Access>;
+    return <Access />;
   } else {
     return (
       <>
@@ -72,8 +72,9 @@ export default function Person() {
                 </p>
                 {/* <a href='#' onClick={addFrnd}>Add Friend </a> */}
               </div>
+              <p><a href={`/ChitChat/${idForPerson}`}>Wanna Text him?</a></p>
             </div>
-            <div>Your Skills:</div>
+            <div>His Skills:</div>
             {skillList}
           </>
         )}

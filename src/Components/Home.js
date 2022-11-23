@@ -94,20 +94,6 @@ export default function Home() {
         </button>
         {error && <p className="error">{error}</p>}
       </div>
-
-      <div className="home-container">
-        Home Page and Profile Page are under Construction.
-        <br></br>
-        Will be back with new features like adding a friend, searching friends
-        based on tech skills, etc.
-        <br></br>
-        <br></br>
-        <br></br>
-        Feel free to text Admin of IIITL Events to give any idea which would be
-        better to implement on this website
-        <br></br>
-        Dw, You will get credits for good ideas :)
-      </div>
       <Feed />
     </>
   );
