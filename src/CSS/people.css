@@ -20,9 +20,9 @@
   background: rgb(105, 104, 104);
 }
 .people p {
-  font-size: 25px;
+  font-size: 20px;
   font-family: sans-serif;
-  margin: 15px;
+  margin: 10px;
 
 }
 .people p:hover {
