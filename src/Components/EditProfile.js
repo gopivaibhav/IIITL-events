@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../CSS/profile.css";
+import edit from "./edit.json"
+import Lottie from "lottie-react";
+import Slide from 'react-reveal/Slide';
 export default function EditProfile() {
   const [fName, setfName] = useState();
   const [lName, setlName] = useState();
@@ -48,32 +51,41 @@ export default function EditProfile() {
   };
   let skillList = skills.map((i) => {
     return (
-      <p key={i}>
+      <p key={i} className="rounded-2xl  bg-white  shadow-2xl  py-3 w-[200px]">
         {i} <span>X</span>
       </p>
     );
   });
   return (
-    <>
+    <div className="flex px-40 gap-x-80">
+    <Slide left>
+    <div>
+    <Lottie className="w-[800px]" animationData={edit} loop={true} />
+    </div>
+    </Slide>
+    <Slide right>
+   
       <div className="outer-container">
-        <p>
+        <h1 className="text-3xl ">EDIT PROFILE</h1>
+        <p className="font-semibold text-xl">
           First Name :{" "}
           <input
             type="text"
             ref={First}
+            className="bg-white mx-4  shadow-xl rounded-xl  border-[1px] text-blue-600 px-2 py-3 my-10 font-bold text-xl w-[300px]"
             onChange={(e) => setfName(e.target.value)}
           ></input>
-        </p>
-        <p>
+         <br />
           Last Name :{" "}
           <input
             type="text"
             ref={Last}
+            className="bg-white mx-4 shadow-xl rounded-xl  border-[1px] text-blue-600 px-2 py-3 my-10 font-bold text-xl w-[300px]"
             onChange={(e) => setlName(e.target.value)}
           ></input>
         </p>
-        <div className="skills">Skills You selected: {skillList}</div>
-        <select onChange={skillChange}>
+        <div className="skills font-semibold">Skills You selected: {skillList}</div>
+        <select onChange={skillChange} className="px-5 py-3 bg-white shadow-2xl rounded-2xl">
           <option value="Web Development">Web Development</option>
           <option value="App Development">App Development</option>
           <option value="AI-ML">AI-ML</option>
@@ -81,14 +93,11 @@ export default function EditProfile() {
           <option value="Design">Design</option>
           <option value="Content">Content</option>
         </select>
-        <button onClick={handleClick}>
+        <button className="px-4 py-2 border-black rounded-md bg-black text-white font-semibold hover:text-blue-600 my-10"  onClick={handleClick}>
           Submit
-          <span className="first"></span>
-          <span className="second"></span>
-          <span className="third"></span>
-          <span className="fourth"></span>
         </button>
       </div>
-    </>
+      </Slide>
+    </div>
   );
 }

@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 .container p:hover {
-  color: #03e9f4;
+  
   cursor: pointer;
 }
 .You {
@@ -14,7 +14,7 @@
   font-size: 18px;
   border: 1px solid #4e38a1;
   background-color: #4e38a1;
-  color: white;
+
   border-radius: 10px;
   padding-bottom: 23px;
   position: relative;
@@ -45,7 +45,7 @@
   background-color: transparent;
 }
 input:focus {
-  color: #03e9f4;
+ 
   outline: 0px;
 }
 .send {
@@ -85,7 +85,7 @@ input:focus {
   font-weight: 600;
   bottom: 0px;
   font-size: 15px;
-  color: #bda359;
+
   right: 10px;
 }
 @media screen and (max-width:500px) {

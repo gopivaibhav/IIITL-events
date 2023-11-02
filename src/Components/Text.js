@@ -51,7 +51,7 @@ export default function Text() {
   const list = items.map((i) => {
     if (i.sender === "You") {
       return (
-        <p key={i._id} id={i._id} className="right">
+        <p key={i._id} id={i._id} className="right text-black">
           <span className="You">
             {i.msg}
             <span className="time">{i.time}</span>
@@ -60,7 +60,7 @@ export default function Text() {
       );
     } else if (i.sender === "Admin") {
       return (
-        <p key={i._id} id={i._id} className="left">
+        <p key={i._id} id={i._id} className="left text-black">
           <span className="Admin">
             {i.msg}
             <span className="time">{i.time}</span>
@@ -74,14 +74,15 @@ export default function Text() {
     return (
       <>
         <p className="title">Chat with Your Admin</p>
-        <div className="text-container">
+        <div className="text-container bg-white text-black">
           {list}
           {error !== "" && <p className="error">{error}</p>}
         </div>
-        <div className="msg">
+        <div className="msg bg-white text-black">
           <input
             type="text"
             placeholder="Type Your Message"
+            className="bg-white"
             onChange={(e) => {
               setText(e.target.value);
             }}

@@ -13,9 +13,6 @@ img{
     font-size: 35px;
     text-transform: uppercase;
 }
-.overall-container a:hover{
-    color: #03e9f4;
-}
 .outer-container{
     display: flex;
     flex-direction: column;
@@ -26,32 +23,9 @@ img{
     padding: 5px;
     margin: 15px;
 }
-.outer-container input {
-    font-size: 15px;
-    padding: 10px;
-    color: #fff;
-    border: 0px;
-    border-bottom: 1px solid white;
-    background-color: transparent;
-  }
-  .outer-container input:focus {
-    color: #03e9f4;
-    background-color: transparent;
-    outline: 0;
-  
-  }
 
-  select{
-      background-color: transparent;
-      padding: 10px;
-      border: 1px solid #03e9f4;
-      border-radius: 50px;
-      margin: 5px;
-  }
-  .skills p{
-      padding: 3px;
-      font-size: 15px;
-  }
+
+  
   option{
       color: black;
   }

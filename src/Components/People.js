@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../CSS/people.css";
+import Lottie from "lottie-react";
+import Slide from 'react-reveal/Slide';
+import searchh from "./search.json"
 export default function People() {
   const [items, setItems] = useState([]);
   // const [frnds, setFrnds] = useState([]);
@@ -59,31 +62,47 @@ export default function People() {
   // }
   const list = newItems.map((i) => {
     return (
-      <p key={i._id} id={i._id} onClick={handleClick}>
+      <p key={i._id} id={i._id} className="flex items-center gap-x-5 shadow-md px-3 rounded-xl  py-4 min-w-[400px] hover:text-blue-600 cursor-pointer" onClick={handleClick}>
+        <img className="rounded-full w-16 h-16" src="https://static.vecteezy.com/system/resources/previews/008/420/425/original/cute-penguin-wearing-earmuff-cartoon-icon-illustration-animal-winter-icon-concept-isolated-premium-flat-cartoon-style-vector.jpg" alt="" />
+        <span>
         {i.fName} {i.lName}
+        </span>
         {/* <span onClick={addFrnd} key={i._id}>Add Friend</span> */}
       </p>
     );
   });
   return (
-    <>
-      <div className="people">
+    <div className="flex  gap-x-[200px] px-56">
+    <Slide left>
+    <div>
+    <Lottie className="w-[800px]" animationData={searchh} loop={true} />
+    </div>
+    </Slide>
+    <Slide right>
+   
+      <div className="people pr-">
         <input
           type="text"
           onChange={searchFun}
           id="search"
+          placeholder="Search"
+          className="bg-white  shadow-xl rounded-xl  border-[1px] text-blue-600 px-2 py-3 my-10 font-bold text-xl w-[300px]"
           autoComplete="off"
         ></input>
+        
         {msg ? (
           <span className="error">{msg}</span>
         ) : (
           <label htmlFor="search" style={{ fontSize: "20px" }}>
             {" "}
-            Searching for {search}
+           
           </label>
         )}
+        <div className="h-[600px] overflow-auto ">
         {list}
+        </div>
       </div>
-    </>
+      </Slide>
+    </div>
   );
 }

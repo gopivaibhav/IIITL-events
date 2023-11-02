@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../CSS/home.css";
 import axios from "axios";
 import Card from "./Card";
+import Zoom from 'react-reveal/Zoom';
 export default function Feed() {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
@@ -20,8 +21,10 @@ export default function Feed() {
     }
   };
   return (
-    <div className="events-div">
-      <div className="cards-div">
+    <div className=" my-10 text-center items-center">
+    <h1 className="text-3xl my-10">Events</h1>
+    {data.length==0?<div> No events now</div>:<div></div>}
+      <div className="grid grid-flow-row gap-x-10 gap-y-10 grid-cols-3  px-40">
         {data.map((ele) => {
           return (
             <Card
@@ -34,8 +37,10 @@ export default function Feed() {
           );
         })}
       </div>
+      <Zoom>
       {error && <p className="error">{error}</p>}
-      <button onClick={addEvent}>Add Event</button>
+      <button className="px-4 py-2 mx-auto border-black rounded-md bg-black text-white font-semibold hover:text-blue-600" onClick={addEvent}>Add Event</button>
+      </Zoom>
     </div>
   );
 }

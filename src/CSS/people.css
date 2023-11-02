@@ -25,19 +25,8 @@
   margin: 10px;
 
 }
-.people p:hover {
-  color: #03e9f4;
-  cursor: pointer;
-}
 
-.people input{
-  background-color: #243b55;
-  border: 0px;
-  padding:10px;
-  border-radius: 20px;
-  margin: 5px;
-  color: #03e9f4;
-}
+
 .error{
   color: red;
   font-size: 25px;

@@ -51,7 +51,7 @@ function Chitchat() {
             )
         }
         return(
-            <div>
+            <div className="text-xl  my-2 mx-2">
                 You both never interacted with each other, Make your move!!
             </div>
         )
@@ -76,15 +76,16 @@ function Chitchat() {
   return (
     <div>
         <TextHandler />
-        <div className="msg">
+        <div className="fixed bottom-2 w-full flex ">
             <input
             type="text"
             placeholder="Type Your Message"
+            className="w-full shadow-2xl border-[1px]  px-10 py-10"
             onChange={(e) => {
                 setText(e.target.value);
             }}
             ></input>
-            <button onClick={submitMsg} className="send">
+            <button onClick={submitMsg} className="send rounded bg-black text-white font-semibold text-xl focus:border-black">
             Send
             <span className="first"></span>
             <span className="second"></span>

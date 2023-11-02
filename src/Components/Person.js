@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Access from "./Access";
 import "../CSS/profile.css";
+import { LottiePlayer } from "lottie-react";
+import Lottie from "lottie-react";
+import person1 from "./person.json"
+import Slide from 'react-reveal/Slide';
 export default function Person() {
   const [error, setError] = useState(null);
   const [fName, setfName] = useState(null);
@@ -60,23 +64,33 @@ export default function Person() {
   } else {
     return (
       <>
+      
         {fName && (
-          <>
-            <div className="overall-container">
-              <div>
+          <div className="flex  pt-10 px-40 gap-x-[200px]">
+          <Slide left>
+          <div>
+          <Lottie className="w-[800px]" animationData={person1} loop={true} />
+          </div>
+          </Slide>
+          <Slide right>
+            <div className="flex flex-col pt-20 items-center ">
+              <div className="">
                 <img src={imageUrl} alt=""></img>
               </div>
               <div>
-                <p className="name">
+                <p className="name mb-10 mt-2">
                   {fName} {lName}
                 </p>
                 {/* <a href='#' onClick={addFrnd}>Add Friend </a> */}
               </div>
-              <p><a href={`/ChitChat/${idForPerson}`}>Wanna Text him?</a></p>
-            </div>
-            <div>His Skills:</div>
-            {skillList}
-          </>
+              <p><a className="px-4 py-2 mt-10 border-black rounded-md bg-black text-white font-semibold hover:text-blue-600 my-10" href={`/ChitChat/${idForPerson}`}>Wanna Text him?</a></p>
+              <div className="my-10">
+              {skillList}
+              <div>His Skills:</div>
+              </div>
+              </div>
+              </Slide>
+          </div>
         )}
       </>
     );

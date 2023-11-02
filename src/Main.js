@@ -13,7 +13,7 @@ import Text from "./Components/Text";
 import { useState, useEffect } from "react";
 import EditProfile from "./Components/EditProfile";
 import AddFeed from "./Components/AddFeed";
-
+import './CSS/index.css'
 
 export default function Main() {
   const [text, setText] = useState("Login");
@@ -51,34 +51,34 @@ export default function Main() {
   
   return (
     <Router>
-      <header className="header">
-        <nav className="navbar">
-          <Link className="nav-logo" to="/">
-            IIITL Events.
+      <header className="header  ">
+        <nav className="navbar shadow-2xl ">
+          <Link className="nav-logo text-blue-600" to="/">
+            IIITL Events
           </Link>
           <ul className={active ? "active nav-menu" : "nav-menu"} ref={navMenu}>
             <li className="nav-item">
-              <Link className="nav-link" onClick={linkClick} to="/">
+              <Link className="nav-link text-black font-medium  text-lg hover:text-blue-600" onClick={linkClick} to="/">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" onClick={linkClick} to="/people">
+              <Link className="nav-link  text-black font-medium text-lg hover:text-blue-600" onClick={linkClick} to="/people">
                 Search
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" onClick={linkClick} to="/text">
+              <Link className="nav-link  text-black font-medium text-lg  hover:text-blue-600" onClick={linkClick} to="/text">
                 Chat
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" onClick={linkClick} to="/profile">
+              <Link className="nav-link  text-black font-medium text-lg  hover:text-blue-600" onClick={linkClick} to="/profile">
                 Profile
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" onClick={loginClick} to="/login">
+              <Link className="nav-link text-black  font-medium  text-lg hover:text-blue-600" onClick={loginClick} to="/login">
                 {text}
               </Link>
             </li>
@@ -94,7 +94,7 @@ export default function Main() {
           </div>
         </nav>
       </header>
-      <Routes>
+      <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/edit" element={<EditProfile />} />
